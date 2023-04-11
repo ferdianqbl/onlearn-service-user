@@ -14,7 +14,14 @@ const RefreshToken = sequelize.define(
       primaryKey: true,
       allowNull: false,
     },
-
+    token: {
+      type: DataTypes.TEXT,
+      allowNull: false,
+    },
+    token: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     createdAt: {
       type: DataTypes.DATE,
       allowNull: false,
@@ -29,7 +36,7 @@ const RefreshToken = sequelize.define(
     },
   },
   {
-    tableName: "users",
+    tableName: "refresh_tokens",
     timestamps: true,
   }
 );
