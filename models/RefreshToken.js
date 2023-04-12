@@ -18,9 +18,16 @@ const RefreshToken = sequelize.define(
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    token: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      field: "user_id",
+      references: {
+        model: "users",
+        key: "id",
+      },
+      onUpdate: "CASCADE",
+      onDelete: "CASCADE",
     },
     createdAt: {
       type: DataTypes.DATE,
