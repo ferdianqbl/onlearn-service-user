@@ -47,9 +47,13 @@ module.exports = async (req, res, next) => {
       profession,
     });
 
-    return res
-      .status(201)
-      .json({ error: 0, message: "User created", data: newUser.id });
+    return res.status(201).json({
+      error: 0,
+      message: "User created",
+      data: {
+        new_user: newUser.id,
+      },
+    });
   } catch (error) {
     return res.status(500).json({ error: error.message });
   }

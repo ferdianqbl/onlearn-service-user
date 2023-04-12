@@ -31,7 +31,9 @@ module.exports = async (req, res, next) => {
     return res.status(201).json({
       error: 0,
       message: "Refresh token created",
-      data: refreshToken.id,
+      data: {
+        token_id: refreshToken.token,
+      },
     });
   } catch (error) {
     return res.status(500).json({ error: 1, message: error.message });
