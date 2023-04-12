@@ -34,6 +34,6 @@ module.exports = async (req, res, next) => {
       data: refreshToken.id,
     });
   } catch (error) {
-    return res.status(500).json({ error: 1, error: error.message });
+    return res.status(500).json({ error: 1, message: error.message });
   }
 };
