@@ -53,18 +53,6 @@ module.exports = {
         defaultValue: Sequelize.NOW,
       },
     });
-
-    await queryInterface.addConstraint("users", {
-      fields: ["email"],
-      type: "unique",
-      name: "UNIQUE_USERS_EMAIL",
-    });
-
-    await queryInterface.addConstraint("users", {
-      fields: ["username"],
-      type: "unique",
-      name: "UNIQUE_USERS_USERNAME",
-    });
   },
 
   async down(queryInterface, Sequelize) {
