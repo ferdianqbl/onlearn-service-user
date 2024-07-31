@@ -23,7 +23,7 @@ module.exports = async (req, res, next) => {
     const user = await User.findByPk(id);
 
     if (!user)
-      return res.status(404).json({ status: 1, message: "User not found" });
+      return res.status(404).json({ error: 1, message: "User not found" });
 
     if (email) {
       const checkEmail = await User.findOne({
@@ -33,7 +33,7 @@ module.exports = async (req, res, next) => {
       if (checkEmail && email !== user.email)
         return res
           .status(409)
-          .json({ status: 1, message: "Email already exists" });
+          .json({ error: 1, message: "Email already exists" });
     }
 
     if (username) {
@@ -44,7 +44,7 @@ module.exports = async (req, res, next) => {
       if (checkUsername && username !== user.username)
         return res
           .status(409)
-          .json({ status: 1, message: "Username already exists" });
+          .json({ error: 1, message: "Username already exists" });
     }
 
     const data = {
@@ -61,7 +61,7 @@ module.exports = async (req, res, next) => {
     if (!updatedUser) throw new Error();
 
     return res.status(200).json({
-      status: 0,
+      error: 0,
       message: "User updated",
       data: {
         name,
@@ -72,6 +72,6 @@ module.exports = async (req, res, next) => {
       },
     });
   } catch (error) {
-    return res.status(500).json({ status: 1, message: error.message });
+    return res.status(500).json({ error: 1, message: error.message });
   }
 };

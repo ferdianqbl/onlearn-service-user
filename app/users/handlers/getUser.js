@@ -17,14 +17,14 @@ module.exports = async (req, res, next) => {
     });
 
     if (!user)
-      return res.status(404).json({ status: 1, message: "User not found" });
+      return res.status(404).json({ error: 1, message: "User not found" });
 
     res.status(200).json({
-      status: 0,
+      error: 0,
       message: "Get user success",
       data: user,
     });
   } catch (error) {
-    return res.status(500).json({ status: 1, message: error.message });
+    return res.status(500).json({ error: 1, message: error.message });
   }
 };

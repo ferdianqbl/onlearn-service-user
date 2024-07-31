@@ -30,12 +30,12 @@ module.exports = async (req, res, next) => {
     if (!isMatch)
       return res
         .status(400)
-        .json({ status: 1, message: "Your email or password is incorrect" });
+        .json({ error: 1, message: "Your email or password is incorrect" });
 
     const { id, name, role, username, profession, avatar } = user;
 
     res.status(200).json({
-      status: 0,
+      error: 0,
       message: "Login success",
       data: {
         id,
@@ -48,6 +48,6 @@ module.exports = async (req, res, next) => {
       },
     });
   } catch (error) {
-    res.status(500).json({ status: 1, message: error.message });
+    res.status(500).json({ error: 1, message: error.message });
   }
 };
