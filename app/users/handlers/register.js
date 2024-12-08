@@ -6,13 +6,14 @@ const v = new Validator();
 
 module.exports = async (req, res, next) => {
   try {
-    const { name, username, email, password, profession } = req.body;
+    const { name, username, email, password, profession, role } = req.body;
     const schema = {
       name: "string|empty:false|min:3",
       username: "string|empty:false|min:3",
       email: "email|empty:false",
       password: "string|empty:false",
       profession: "string|optional",
+      role: "string|optional",
     };
 
     const validate = v.validate(req.body, schema);
@@ -45,6 +46,7 @@ module.exports = async (req, res, next) => {
       email,
       password: await bcrypt.hash(password, 10),
       profession,
+      role: role || "student",
     });
 
     return res.status(201).json({
